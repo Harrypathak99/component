@@ -1,89 +1,80 @@
 import React, { useState } from "react";
+import logo from './logo.png'
+import { Button, IconButton, Input, ListItem, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
+import { Bars3Icon, EllipsisVerticalIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
 
   return (
-    <header className={`flex w-full items-center bg-white dark:bg-dark`}>
-      <div className="container">
-        <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-60 max-w-full px-4">
-            <a href="/#" className="block w-full py-5">
-              <img
-                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
+    <header className='flex w-full xl:px-12 m-0 bg-white border-b-2 dark:bg-dark justify-between'>
+     
+     
+        
+          <div className="flex items-center gap-4 p-0 ml-16 xl:ml-2">
+          <img
+                src={logo}
                 alt="logo"
-                className="dark:hidden"
+                className="block xl:hidden dark:hidden w-40"
               />
-              <img
-                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
-                alt="logo"
-                className="hidden dark:block"
-              />
-            </a>
+           
+          
+          <div className="p-2 hidden sm:block">
+            <Input
+              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              label="Search"
+              className="lg:min-w-[300px]"
+            />
           </div>
-          <div className="flex w-full items-center justify-between px-4">
-            <div>
-              <button
-                onClick={() => setOpen(!open)}
-                id="navbarToggler"
-                className={` ${
-                  open && "navbarTogglerActive"
-                } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
-              >
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-                <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-              </button>
-              <nav
-                // :className="!navbarOpen && 'hidden' "
-                id="navbarCollapse"
-                className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-transparent ${
-                  !open && "hidden"
-                } `}
-              >
-                <ul className="block lg:flex">
-                  <ListItem NavLink="/#">Home</ListItem>
-                  <ListItem NavLink="/#">Payment</ListItem>
-                  <ListItem NavLink="/#">About</ListItem>
-                  <ListItem NavLink="/#">Blog</ListItem>
-                </ul>
-              </nav>
-            </div>
-            <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
-              <a
-                href="/#"
-                className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
-              >
-                Sign in
-              </a>
+          </div>
+   
+            <div className="hidden md:flex gap-2 mr-6 items-center pr-4 md:pr-0 lg:pr-0">
+              <Button
+              variant="text"
+              >Sign in 
+              </Button>
 
-              <a
-                href="/#"
-                className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
-              >
-                Sign Up
-              </a>
+              <Button
+              variant="filled" className="bg-primary"
+                >
+                Sign up
+              </Button>
             </div>
+
+            <div className="flex gap-2 md:hidden mr-6 items-center pr-0">
+            <div className="block sm:hidden">
+            <MagnifyingGlassIcon className="w-5" />
+            </div>
+            <Menu placement="top">
+          <MenuHandler>
+             <Button variant="text" className="w-7 pl-0"><EllipsisVerticalIcon color="black" className="w-7 cursor-pointer" /></Button>
+             </MenuHandler>
+             <MenuList className="w-[250px]">
+            <MenuItem className="flex gap-2 w-ful"><Button
+              variant="text"
+              >Sign in 
+              </Button>
+              <Button
+              variant="filled" className="bg-primary"
+                >
+                Sign up
+              </Button></MenuItem>
+
+            <MenuItem>
+            
+            </MenuItem>
+            <div className="p-2 hidden sm:block">
+            <Input
+              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              label="Search"
+            />
           </div>
-        </div>
-      </div>
+          
+          </MenuList>
+             </Menu>
+            </div>
+          
     </header>
   );
 };
 
 export default Navbar;
-
-const ListItem = ({ children, NavLink }) => {
-  return (
-    <>
-      <li>
-        <a
-          href={NavLink}
-          className="flex py-2 text-base font-medium text-body-color hover:text-dark dark:text-dark-6 dark:hover:text-white lg:ml-12 lg:inline-flex"
-        >
-          {children}
-        </a>
-      </li>
-    </>
-  );
-};

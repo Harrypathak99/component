@@ -34,7 +34,7 @@ import {
 } from "@heroicons/react/24/outline";
 import DrawerElements from "./DrawerElements";
  
-export default function Header() {
+export default function Header2() {
   const [open, setOpen] = React.useState(0);
   const [openAlert, setOpenAlert] = React.useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
@@ -48,24 +48,15 @@ export default function Header() {
  
   return (
     <>
-    <div className="absolute top-2 left-3 z-20 block xl:hidden">
-      <IconButton variant="text" size="lg" onClick={openDrawer}>
-        {isDrawerOpen ? (
-          <XMarkIcon className="h-8 w-8 stroke-2" />
-        ) : (
-          <Bars3Icon className="h-8 w-8 stroke-2" />
-        )}
-      </IconButton>
-      </div>
-      <Drawer open={isDrawerOpen} onClose={closeDrawer} className="absolute w-[270px]">
+
         <Card
           color=""
           shadow={false}
-          className="h-[calc(100vh-0rem)] w-full p-4 overflow-y-scroll no-scrollbar bg-gray-100"
+          className="h-[calc(100vh-0rem)] w-[250px] p-4 lg:p-1 lg:pr-2 fixed overflow-y-scroll no-scrollbar bg-white"
         >
          <DrawerElements />
         </Card>
-      </Drawer>
+     
     </>
   );
 }

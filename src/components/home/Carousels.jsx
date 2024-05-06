@@ -1,40 +1,66 @@
-import { Carousel } from "@material-tailwind/react";
- 
+import { React, useRef } from 'react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+import Cards from './Cards';
+
+
 
 const Carousels = () =>  {
+ 
   return (
-    <Carousel
-      className="rounded-xl scroll-snap-x w-4/6 h-4/5"
-      navigation={({ setActiveIndex, activeIndex, length }) => (
-        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-          {new Array(length).fill("").map((_, i) => (
-            <span
-              key={i}
-              className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
-              }`}
-              onClick={() => setActiveIndex(i)}
-            />
-          ))}
-        </div>
-      )}
-    >
-      <img
-        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-        alt="image 1"
-        className="h-full w-full object-cover touch-pan-x"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-        alt="image 2"
-        className="h-full w-full object-cover touch-pan-x"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-        alt="image 3"
-        className="h-full w-full object-cover touch-pan-x"
-      />
-    </Carousel>
-  );
+    <>
+
+    <Swiper
+    style={{  
+          '--swiper-navigation-color': '#fff',
+          '--swiper-pagination-color': '#fff',
+        }}
+        
+    navigation={true}
+    modules={[Navigation, Pagination, Scrollbar, A11y ]}
+    spaceBetween={20}
+    slidesPerView={1.5}
+    breakpoints={{
+          550: {
+            slidesPerView: 1.5,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2.5,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3.5,
+            spaceBetween: 20,
+          },
+          1700: {
+            slidesPerView: 4.5,
+            spaceBetween: 20,
+          },
+        }}
+    className='mySwiper'
+  
+  >
+   
+    <SwiperSlide><Cards /></SwiperSlide>
+    <SwiperSlide><Cards /></SwiperSlide>
+    <SwiperSlide><Cards /></SwiperSlide>
+    <SwiperSlide><Cards /></SwiperSlide>
+    <SwiperSlide><Cards /></SwiperSlide>
+    <SwiperSlide><Cards /></SwiperSlide>
+    
+  </Swiper>
+  <div>
+
+      </div>
+  </>
+    );
 }
 export default Carousels
